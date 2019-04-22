@@ -53,7 +53,7 @@ public class QuestionsPage {
 
     private WebElement[] questions;
 
-    QuestionsPage(WebDriver driver) {
+    public QuestionsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         interestChoices = new WebElement[]{veryIntersedButton, justLookingButton};
         teamNumbers = new WebElement[]{oneToFiveButton, sixToFifteenButton, sixteenToTwentyfifthButton,
@@ -65,8 +65,19 @@ public class QuestionsPage {
     public void fillProfile() {
         interestChoices[new Random().nextInt(interestChoices.length)].click();
         teamNumbers[new Random().nextInt(teamNumbers.length)].click();
-        questions[new Random().nextInt(questions.length)].click();
+        questions[new Random().nextInt(questions.length - 1)].click();
         submitResultsButton.click();
+    }
+
+    public void resendEmail() {
         resendEmailButton.click();
+    }
+
+    public boolean isSubmitResultsButtonVisible() {
+        return submitResultsButton.isDisplayed();
+    }
+
+    public boolean isResendEmailButtonVisible() {
+        return resendEmailButton.isDisplayed();
     }
 }
