@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Random;
+
 public class QuestionsPage {
 
     private WebDriver driver;
@@ -42,6 +44,9 @@ public class QuestionsPage {
     @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/button")
     private WebElement submitResultsButton;
 
+    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[1]/p[3]/button")
+    private WebElement resendEmailButton;
+
     private WebElement[] interestChoices;
 
     private WebElement[] teamNumbers;
@@ -58,9 +63,10 @@ public class QuestionsPage {
     }
 
     public void fillProfile() {
-        interestChoices[(int) (Math.random() * (interestChoices.length - 1))].click();
-        teamNumbers[(int) (Math.random() * (teamNumbers.length - 1))].click();
-        questions[(int) (Math.random() * (questions.length - 1))].click();
+        interestChoices[new Random().nextInt(interestChoices.length)].click();
+        teamNumbers[new Random().nextInt(teamNumbers.length)].click();
+        questions[new Random().nextInt(questions.length)].click();
         submitResultsButton.click();
+        resendEmailButton.click();
     }
 }
