@@ -45,4 +45,16 @@ public class ApplicationTest {
 
         Assert.assertTrue(application.checkResendingEmail());
     }
+
+    @Test
+    public void testTwitterElement() {
+        String expectedURL = "https://twitter.com/wrike";
+
+        String actualURL = application.getTwitterElementLink();
+        String iconPath = application.getTwitterElementIcon();
+        application.sleepDriver();
+
+        Assert.assertEquals(expectedURL, actualURL);
+        Assert.assertTrue(iconPath.contains("twitter"));
+    }
 }
