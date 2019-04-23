@@ -3,13 +3,14 @@ package com.selenium;
 import com.selenium.config.SeleniumConfig;
 import com.selenium.page.MainPage;
 import com.selenium.page.QuestionsPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class Application {
 
     private WebDriver driver;
     private MainPage mainPage;
-    public QuestionsPage questionsPage;
+    private QuestionsPage questionsPage;
 
     public Application() {
         driver = new SeleniumConfig().getDriver();
@@ -42,11 +43,19 @@ public class Application {
     }
 
     public boolean checkQuestionsFormSubmission() {
-        return !questionsPage.isSubmitResultsButtonVisible();
+        return !questionsPage.getSubmitResultsButton().isDisplayed();
     }
 
     public boolean checkResendingEmail() {
-        return !questionsPage.isResendEmailButtonVisible();
+        return !questionsPage.getResendEmailButton().isDisplayed();
+    }
+
+    public String getTwitterElementLink() {
+        return questionsPage.getTwitterElement().findElement(By.tagName("a")).getAttribute("href");
+    }
+
+    public String getTwitterElementIcon() {
+        return questionsPage.getTwitterElement().findElement(By.tagName("use")).getAttribute("xlink:href");
     }
 
     public void sleepDriver() {
