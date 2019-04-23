@@ -11,41 +11,44 @@ public class QuestionsPage {
 
     private WebDriver driver;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[1]/label[1]/button")
+    @FindBy(xpath = "//button[contains(.,'Very interested')]")
     private WebElement veryIntersedButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[1]/label[2]/button")
+    @FindBy(xpath = "//button[contains(.,'Just looking')]")
     private WebElement justLookingButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[2]/label[1]/button")
+    @FindBy(xpath = "//button[contains(.,'1–5')]")
     private WebElement oneToFiveButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[2]/label[2]/button")
+    @FindBy(xpath = "//button[contains(.,'6–15')]")
     private WebElement sixToFifteenButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[2]/label[3]/button")
+    @FindBy(xpath = "//button[contains(.,'16–25')]")
     private WebElement sixteenToTwentyfifthButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[2]/label[4]/button")
+    @FindBy(xpath = "//button[contains(.,'26–50')]")
     private WebElement twentyfifthToFiftythButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[2]/label[5]/button")
+    @FindBy(xpath = "//button[contains(.,'50+')]")
     private WebElement aboveFifrtyButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[3]/label[1]/button")
+    @FindBy(xpath = "//button[contains(.,'Yes')]")
     private WebElement yesButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[3]/label[2]/button")
+    @FindBy(xpath = "//button[contains(.,'No')]")
     private WebElement noButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[3]/label[3]/button")
+    @FindBy(xpath = "//button[contains(.,'Other')]")
     private WebElement otherButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/button")
+    @FindBy(xpath = "//button[contains(.,'Submit results')]")
     private WebElement submitResultsButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[1]/p[3]/button")
+    @FindBy(xpath = "(//button[contains(.,'Resend email')])[2]")
     private WebElement resendEmailButton;
+
+    @FindBy(xpath = "(//li[contains(@class,'social-item')])[1]")
+    private WebElement twitterElemnt;
 
     private WebElement[] interestChoices;
 
@@ -73,11 +76,15 @@ public class QuestionsPage {
         resendEmailButton.click();
     }
 
-    public boolean isSubmitResultsButtonVisible() {
-        return submitResultsButton.isDisplayed();
+    public WebElement getTwitterElement() {
+        return twitterElemnt;
     }
 
-    public boolean isResendEmailButtonVisible() {
-        return resendEmailButton.isDisplayed();
+    public WebElement getSubmitResultsButton() {
+        return submitResultsButton;
+    }
+
+    public WebElement getResendEmailButton() {
+        return resendEmailButton;
     }
 }
