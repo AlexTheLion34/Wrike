@@ -5,42 +5,50 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Random;
+
 public class QuestionsPage {
 
     private WebDriver driver;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[1]/label[1]/button")
+    @FindBy(xpath = "//button[contains(.,'Very interested')]")
     private WebElement veryIntersedButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[1]/label[2]/button")
+    @FindBy(xpath = "//button[contains(.,'Just looking')]")
     private WebElement justLookingButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[2]/label[1]/button")
+    @FindBy(xpath = "//button[contains(.,'1–5')]")
     private WebElement oneToFiveButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[2]/label[2]/button")
+    @FindBy(xpath = "//button[contains(.,'6–15')]")
     private WebElement sixToFifteenButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[2]/label[3]/button")
+    @FindBy(xpath = "//button[contains(.,'16–25')]")
     private WebElement sixteenToTwentyfifthButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[2]/label[4]/button")
+    @FindBy(xpath = "//button[contains(.,'26–50')]")
     private WebElement twentyfifthToFiftythButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[2]/label[5]/button")
+    @FindBy(xpath = "//button[contains(.,'50+')]")
     private WebElement aboveFifrtyButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[3]/label[1]/button")
+    @FindBy(xpath = "//button[contains(.,'Yes')]")
     private WebElement yesButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[3]/label[2]/button")
+    @FindBy(xpath = "//button[contains(.,'No')]")
     private WebElement noButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/div[3]/label[3]/button")
+    @FindBy(xpath = "//button[contains(.,'Other')]")
     private WebElement otherButton;
 
-    @FindBy(xpath = "/html/body/div[1]/main/div/div/div[2]/div/div[2]/div/form/button")
+    @FindBy(xpath = "//button[contains(.,'Submit results')]")
     private WebElement submitResultsButton;
+
+    @FindBy(xpath = "(//button[contains(.,'Resend email')])[2]")
+    private WebElement resendEmailButton;
+
+    @FindBy(xpath = "(//li[contains(@class,'social-item')])[1]")
+    private WebElement twitterElemnt;
 
     private WebElement[] interestChoices;
 
@@ -48,7 +56,7 @@ public class QuestionsPage {
 
     private WebElement[] questions;
 
-    QuestionsPage(WebDriver driver) {
+    public QuestionsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         interestChoices = new WebElement[]{veryIntersedButton, justLookingButton};
         teamNumbers = new WebElement[]{oneToFiveButton, sixToFifteenButton, sixteenToTwentyfifthButton,
@@ -58,9 +66,25 @@ public class QuestionsPage {
     }
 
     public void fillProfile() {
-        interestChoices[(int) (Math.random() * (interestChoices.length - 1))].click();
-        teamNumbers[(int) (Math.random() * (teamNumbers.length - 1))].click();
-        questions[(int) (Math.random() * (questions.length - 1))].click();
+        interestChoices[new Random().nextInt(interestChoices.length)].click();
+        teamNumbers[new Random().nextInt(teamNumbers.length)].click();
+        questions[new Random().nextInt(questions.length - 1)].click();
         submitResultsButton.click();
+    }
+
+    public void resendEmail() {
+        resendEmailButton.click();
+    }
+
+    public WebElement getTwitterElement() {
+        return twitterElemnt;
+    }
+
+    public WebElement getSubmitResultsButton() {
+        return submitResultsButton;
+    }
+
+    public WebElement getResendEmailButton() {
+        return resendEmailButton;
     }
 }

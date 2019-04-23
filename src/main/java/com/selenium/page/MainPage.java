@@ -10,7 +10,7 @@ public class MainPage {
 
     private WebDriver driver;
 
-    @FindBy(xpath = "/html/body/div[1]/header/div[3]/div[2]/div/div/div[2]/div/form/button")
+    @FindBy(xpath = "(//button[contains(@class,'free-trial-button wg-btn wg-btn--green')])[3]")
     private WebElement startForFreeButton;
 
     @FindBy(xpath = "//*[@id=\"modal-pro\"]/form/label[1]/input")
